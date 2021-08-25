@@ -37,10 +37,9 @@ export async function getUserFromCookies(request, reply) {
         });
         //refresh tokens
         await refreshTokens(sessionToken, currentUser._id, reply);
+        // return current user
         return currentUser;
       }
-
-      // return current user
     }
   } catch (error) {
     console.error(error);

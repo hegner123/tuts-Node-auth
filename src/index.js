@@ -32,8 +32,23 @@ async function startApp() {
           request.body.email,
           request.body.password
         );
+        if (userId) {
+          await logUserIn(userId, request, reply);
+          reply.send({
+            data: {
+              status: "SUCCESS",
+              userId,
+            },
+          });
+        }
       } catch (e) {
         console.error(e);
+        reply.send({
+          data: {
+            status: "FAILED",
+            userId,
+          },
+        });
       }
     });
 
@@ -47,13 +62,19 @@ async function startApp() {
         if (isAuthorized) {
           await logUserIn(userId, request, reply);
           reply.send({
-            data: "User Logged In",
+            data: {
+              status: "SUCCESS",
+              userId,
+            },
           });
         }
       } catch (e) {
         console.error(e);
         reply.send({
-          data: e,
+          data: {
+            status: "FAILED",
+            userId,
+          },
         });
       }
     });
@@ -61,9 +82,20 @@ async function startApp() {
     app.post("/api/logout", {}, async (request, reply) => {
       try {
         await logUserOut(request, reply);
-        reply.send({ data: "User Logged Out" });
+        reply.send({
+          data: {
+            status: "LOGOUT SUCCESS",
+            userId,
+          },
+        });
       } catch (e) {
         console.error(e);
+        reply.send({
+          data: {
+            status: "LOGOUT FAILED",
+            userId,
+          },
+        });
       }
     });
 

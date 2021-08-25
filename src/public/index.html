@@ -77,7 +77,6 @@
         </form>
       </div>
     </section>
-    
 
     <br /><br /><br />
     <a href="/test" target="_none">test</a>
@@ -107,6 +106,7 @@
 
               return obj;
             }, {});
+            console.log("values", values);
             const res = await fetch("/api/register", {
               method: "POST",
               body: JSON.stringify(values),
@@ -115,7 +115,6 @@
           } catch (error) {
             console.error(e);
           }
-          console.log("values", values);
         });
 
         // Find form
@@ -143,8 +142,6 @@
             console.error(e);
           }
         });
-        var firstName = "jow";
-        console.log(this.firstName);
       })();
     </script>
   </body>
