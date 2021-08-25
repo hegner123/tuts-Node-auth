@@ -85,7 +85,6 @@ async function startApp() {
         reply.send({
           data: {
             status: "LOGOUT SUCCESS",
-            userId,
           },
         });
       } catch (e) {
@@ -93,7 +92,6 @@ async function startApp() {
         reply.send({
           data: {
             status: "LOGOUT FAILED",
-            userId,
           },
         });
       }
@@ -115,7 +113,6 @@ async function startApp() {
       } catch (error) {
         throw new Error(error);
       }
-      //verify user login
     });
 
     await app.listen(3000);
